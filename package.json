@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eurekahope Service",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
