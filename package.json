@@ -4,7 +4,7 @@
   "description": "Express helllo world on Render",
   "main": "Server",
   "scripts": {
-    "start":"node server.js",
+    "start":"node Server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eurekahope Service",
