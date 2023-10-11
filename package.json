@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express helllo world on Render",
   "main": "Server",
   "scripts": {
     "start":"node server.js",
@@ -15,5 +15,8 @@
     "mongodb": "^6.1.0",
     "mongoose": "^7.5.2",
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
