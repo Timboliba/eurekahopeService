@@ -59,11 +59,20 @@ app.post('/api/Utilisateur', async (req, res) => {
 });
 
 // Recherche d'un utilisateur
-app.get('/api/Utilisateur/:id',(req,res)=>{
-  Utilisateur.findOne({_id:req.params.id})
-  .then(think=>res.status(200).json(think))
-  .catch(error=>res.status(404).json({error}))
-})
+// Recherche d'un utilisateur
+app.get('/api/Utilisateur/:id', (req, res) => {
+  const userId = req.params.id;
+
+  Utilisateur.findOne({ _id: userId })
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ error: "Utilisateur non trouvé" });
+      }
+      res.status(200).json(user);
+    })
+    .catch(error => res.status(500).json({ error: "Erreur serveur" }));
+});
+
 
 
 // Teste Authentification
