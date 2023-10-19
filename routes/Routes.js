@@ -37,9 +37,16 @@ app.use((req, res, next) => {
 
 // Ajout d'un utilisateur
 app.post('/api/Utilisateur', (req, res, next) => {
+ 
   delete req.body._id
   const  utilisateur=new Utilisateur({
-    ...req.body
+    nom:req.body.nom,
+    prenom:req.body.prenom,
+    username:req.body.username,
+    password:req.body.password,
+    email:req.body.email,
+    telephone:req.body.telephone,
+    description:req.body.description
   })
   utilisateur.save()
   .then(think=>res.status(201).json({message:"Objet enregistré avec success!"}))
