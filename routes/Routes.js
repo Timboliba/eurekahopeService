@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 // Importation du module express
 const express=require('express');
  
@@ -28,37 +27,35 @@ app.use((req, res, next) => {
   });
 
 /********************************************Routes Utilisateurs******************************************************/
-// Recupération de la liste de tout les utilisateurs
-  app.get('/api/Utilisateur', (req, res, next) => {
-    // limit(nombrelimite) permet d'indiquer le nombre que lon desire afficher
-    Utilisateur.find({}).limit(10)
-      .then(thing => res.status(200).json(thing))
-      .catch(error => res.status(404).json({ error }));
-  });
+// Récupération des utilisateurs
+app.get('/api/Utilisateur', (req, res) => {
+  // limit(nombrelimite) permet d'indiquer le nombre que l'on désire afficher
+  Utilisateur.find({}).limit(10)
+    .then(users => res.status(200).json(users))
+    .catch(error => {
+      res.status(404).json({ error: error.message });
+    });
+});
 
 // Ajout d'un utilisateur
-app.post('/api/Utilisateur', (req, res, next) => {
-  const  utilisateur=new Utilisateur({
-    // nom:req.body.nom,
-    // prenom:req.body.prenom,
-    // username:req.body.username,
-    // password:req.body.password,
-    // email:req.body.email,
-    // telephone:req.body.telephone,
-    // description:req.body.description
-    nom:"req.body",
-    prenom:"req.body.prenom",
-    username:"req.body.username",
-    password:"req.body.password",
-    email:"req.body.email",
-    telephone:"req.body.telephone",
-    description:"req.body.description"
+app.post('/api/Utilisateur', (req, res) => {
+  const utilisateur = new Utilisateur({
+    nom: req.body.nom,
+    prenom: req.body.prenom,
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+    telephone: req.body.telephone,
+    description: req.body.description
   });
 
-  //req.json(Utilisateur);
   utilisateur.save()
-  .then(think=>res.status(201).json({message:"Objet enregistré avec success!"}))
-  .catch(error=>res.status(404).json({error}))
+    .then(savedUser => {
+      res.status(201).json(savedUser); // Code 201 pour indiquer que la ressource a été créée avec succès
+    })
+    .catch(error => {
+      res.status(400).json({ error: error.message }); // Code 400 pour indiquer une mauvaise requête
+    });
 });
 
 // Recherche d'un utilisateur
