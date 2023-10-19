@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 // Importation du module express
 const express=require('express');
  
@@ -37,17 +38,24 @@ app.use((req, res, next) => {
 
 // Ajout d'un utilisateur
 app.post('/api/Utilisateur', (req, res, next) => {
- 
-  delete req.body._id
   const  utilisateur=new Utilisateur({
-    nom:req.body.nom,
-    prenom:req.body.prenom,
-    username:req.body.username,
-    password:req.body.password,
-    email:req.body.email,
-    telephone:req.body.telephone,
-    description:req.body.description
-  })
+    // nom:req.body.nom,
+    // prenom:req.body.prenom,
+    // username:req.body.username,
+    // password:req.body.password,
+    // email:req.body.email,
+    // telephone:req.body.telephone,
+    // description:req.body.description
+    nom:"req.body",
+    prenom:"req.body.prenom",
+    username:"req.body.username",
+    password:"req.body.password",
+    email:"req.body.email",
+    telephone:"req.body.telephone",
+    description:"req.body.description"
+  });
+
+  //req.json(Utilisateur);
   utilisateur.save()
   .then(think=>res.status(201).json({message:"Objet enregistré avec success!"}))
   .catch(error=>res.status(404).json({error}))
