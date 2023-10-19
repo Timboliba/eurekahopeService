@@ -38,7 +38,7 @@ app.get('/api/Utilisateur', (req, res) => {
 });
 
 // Ajout d'un utilisateur
-app.post('/api/Utilisateur', (req, res) => {
+app.post('/api/Utilisateur', async (req, res) => {
   const utilisateur = new Utilisateur({
     nom: req.body.nom,
     prenom: req.body.prenom,
@@ -59,7 +59,7 @@ app.post('/api/Utilisateur', (req, res) => {
 });
 
 // Recherche d'un utilisateur
-app.get('/api/Utilisateur/:id',(req,res,next)=>{
+app.get('/api/:id',(req,res)=>{
   Utilisateur.findOne({_id:req.params.id})
   .then(think=>res.status(200).json(think))
   .catch(error=>res.status(404).json({error}))
