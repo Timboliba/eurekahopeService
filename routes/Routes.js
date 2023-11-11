@@ -119,12 +119,13 @@ app.delete('/api/Utilisateur/:id', (req, res) => {
 /***************************************Routes Services******************************************************************** */
 
 // Récuperer tout les services
-app.get('/api/Services/', (req, res, next) => {
+app.get('/api/Service/', (req, res, next) => {
   Service.find({})
-    .then(think => res.status(200).json(think))
+    .then(data => res.status(200).json(data))
     .catch(error => res.status(404).json(error))
-    next()
+    .finally(() => next());
 });
+
 
 
 
